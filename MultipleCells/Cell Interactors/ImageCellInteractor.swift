@@ -15,15 +15,17 @@ class ImageCellInteractor: BaseCellInteractor {
     init(title: String) {
         self.title = title
         super.init()
-        
     }
     
-    override func getReusableCell(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.getReusableCellSafe(cell: ImageCell.self)
+    override var cellType: AnyClass {
+        return ImageCell.self
+    }
+    override func configure(_ cell : UITableViewCell) {
+        guard let cell = cell as? ImageCell else { return }
         cell.configure(interactor: self, title: title)
-        return cell
     }
     
+
     
 }
 

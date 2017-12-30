@@ -9,7 +9,10 @@
 import UIKit
 
 class BaseCellInteractor: NSObject {
-    func getReusableCell(tableView: UITableView) -> UITableViewCell {
-        fatalError("Subclasses need to implement the `getReusableCell()` method.")
+    var cellType: AnyClass {
+        fatalError("You have to override `cellType` variable in the "+String(describing: self)+" interactor.")
+    }
+    func configure(_ cell: UITableViewCell) {
+        fatalError("You have to override `configure` variable in the "+String(describing: self)+" interactor.")
     }
 }

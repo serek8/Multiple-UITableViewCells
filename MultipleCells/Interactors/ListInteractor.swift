@@ -23,7 +23,7 @@ class ListInteractor: NSObject, BaseTableInteractorProtocol {
         case sampleImage
     }
     
-    // You can update this array to change the order of the cells
+    // You can update this array to change the order of the cells in the TableView
     private var cellOrder: [Cells] = [
         .firstName,
         .lastName,
@@ -31,10 +31,10 @@ class ListInteractor: NSObject, BaseTableInteractorProtocol {
         .sampleImage]
     
     private(set) lazy var cellInteractors : [Cells:BaseCellInteractor] = [
-        .firstName : createInteractor(for: .firstName),
-        .lastName : createInteractor(for: .lastName),
-        .isAboveEighteen : createInteractor(for: .isAboveEighteen),
-        .sampleImage : createInteractor(for: .sampleImage)
+        .firstName : createCellInteractor(for: .firstName),
+        .lastName : createCellInteractor(for: .lastName),
+        .isAboveEighteen : createCellInteractor(for: .isAboveEighteen),
+        .sampleImage : createCellInteractor(for: .sampleImage)
     ]
     
     func getCellInteractor(for index:Int) -> BaseCellInteractor? {
@@ -45,19 +45,19 @@ class ListInteractor: NSObject, BaseTableInteractorProtocol {
         return cellOrder.count
     }
     
-    func createInteractor(for cell: Cells) -> BaseCellInteractor {
+    func createCellInteractor(for cell: Cells) -> BaseCellInteractor {
         switch cell {
-        case .firstName: return
-            InputTextCellInteractor(title: "First Name", value: "")
+        case .firstName:
+            return InputTextCellInteractor(title: "First Name", value: "")
             
-        case .lastName: return
-            InputTextCellInteractor(title: "First Name", value: "")
+        case .lastName:
+            return InputTextCellInteractor(title: "Last Name", value: "")
             
-        case .isAboveEighteen: return
-            InputBoolCellInteractor(title: "Is Above 18?", value: false)
+        case .isAboveEighteen:
+            return InputBoolCellInteractor(title: "Is Above 18?", value: false)
 
-        case .sampleImage: return
-            ImageCellInteractor(title: "Sample Image")
+        case .sampleImage:
+            return ImageCellInteractor(title: "Sample Image")
         }
     }
     

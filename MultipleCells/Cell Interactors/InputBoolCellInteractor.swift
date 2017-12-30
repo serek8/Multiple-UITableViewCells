@@ -17,13 +17,15 @@ class InputBoolCellInteractor: BaseCellInteractor {
         self.title = title
         self.value = value
         super.init()
-        
     }
     
-    override func getReusableCell(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.getReusableCellSafe(cell: InputBoolCell.self)
+    override var cellType: AnyClass {
+        return InputBoolCell.self
+    }
+    
+    override func configure(_ cell : UITableViewCell) {
+        guard let cell = cell as? InputBoolCell else { return }
         cell.configure(interactor: self, title: title, value: value)
-        return cell
     }
     
 }

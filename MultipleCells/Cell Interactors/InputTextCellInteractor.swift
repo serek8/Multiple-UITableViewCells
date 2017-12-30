@@ -20,11 +20,15 @@ class InputTextCellInteractor: BaseCellInteractor {
         
     }
     
-    override func getReusableCell(tableView: UITableView) -> UITableViewCell {
-        let cell = tableView.getReusableCellSafe(cell: InputTextCell.self)
+    override func configure(_ cell : UITableViewCell) {
+        guard let cell = cell as? InputTextCell else { return }
         cell.configure(interactor: self, title: title, value: value)
-        return cell
     }
+    
+    override var cellType: AnyClass {
+        return InputTextCell.self
+    }
+
     
     
     

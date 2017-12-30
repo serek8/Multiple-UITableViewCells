@@ -10,7 +10,7 @@ import UIKit
 
 class ListTableVC: UITableViewController {
 
-    var interactor : BaseTableInteractorProtocol? = nil
+    var interactor : BaseTableInteractorProtocol! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +18,23 @@ class ListTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.getNumberCellInteractor() ?? 0
+        return interactor.getNumberCellInteractor()
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = interactor?.getCellInteractor(for: indexPath.row)?.getReusableCell(tableView: tableView)
-        return cell ?? UITableViewCell()
+        guard let cellInteractor = interactor.getCellInteractor(for: indexPath.row) else {
+            return UITableViewCell()
+        }
+        let cellView = tableView.getReusableCellSafe(cellType: cellInteractor.cellType)
+        cellInteractor.configure(cellView)
+        return cellView
     }
     
 
 }
+
+
+
+
+

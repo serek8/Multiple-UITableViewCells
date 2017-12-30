@@ -10,22 +10,15 @@ import UIKit
 
 extension UITableView {
     
-    
-    func getReusableCellSafe<T>(cell: T.Type) -> T {
-        var cell = self.dequeueReusableCell(withIdentifier: String(describing: T.self))
-            as? T
+    func getReusableCellSafe(cellType: AnyClass) -> UITableViewCell {
+        var cell = self.dequeueReusableCell(withIdentifier: String(describing: cellType))
         if(cell == nil){
-            self.registerCells(nibName: String(describing:T.self),
-                               tableView: self)
-            cell = self.dequeueReusableCell(withIdentifier: String(describing: T.self))
-                as? T
+            let className = String(describing:cellType)
+            self.register(UINib(nibName:  className, bundle: nil),
+                               forCellReuseIdentifier:  className)
+            cell = self.dequeueReusableCell(withIdentifier: String(describing: cellType))
         }
         return cell!
-    }
-    
-    private func registerCells(nibName: String, tableView: UITableView) {
-        tableView.register(UINib(nibName:  nibName, bundle: nil),
-                           forCellReuseIdentifier: nibName)
     }
     
 }
