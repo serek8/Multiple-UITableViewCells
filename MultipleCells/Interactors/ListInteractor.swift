@@ -1,6 +1,6 @@
 //
 //  ListInteractor.swift
-//  MultipleCells
+//  MultipleCell
 //
 //  Created by Jan Seredynski on 30/12/2017.
 //  Copyright © 2017 Jan Seredynski. All rights reserved.
@@ -8,91 +8,33 @@
 
 import UIKit
 
-protocol BaseTableInteractorProtocol {
-    func getCellInteractor(for index:Int) -> BaseCellInteractor?
-    func getNumberCellInteractor() -> Int
+
+enum ListInteractorCell : CellEnum {
+    case firstName
+    case lastName
+    case isAboveEighteen
+    case sampleImage
 }
 
-//protocol CellProto: RawRepresentable {
-//
-//}
-typealias CellEnum = Int
+class ListInteractor: BaseTableInteractor<ListInteractorCell> {
 
-//public class Abc : Hashable, ExpressibleByIntegerLiteral{
-//    public var hashValue: Int
-//
-//    public typealias IntegerLiteralType = Int
-//    var value : Int
-//    public static func == (lhs: Abc, rhs: Abc) -> Bool {
-//        return (lhs.value == rhs.value && lhs.value == rhs.value)
-//    }
-//
-//    public required init(integerLiteral value: IntegerLiteralType) {
-//        self.value = value
-//    }
-//
-//
-//}
-
-class BaseTableInteractor: NSObject, BaseTableInteractorProtocol {
-    
-    // You can update this array to change the order of the cells in the TableView
-    var cellOrder: [CellEnum]
-    var cellInteractors : [CellEnum:BaseCellInteractor]
-    
-    init(cellOrder: [CellEnum], cellInteractors : [CellEnum:BaseCellInteractor]) {
-        self.cellOrder = cellOrder
-        self.cellInteractors = cellInteractors
-    }
-    
-    func getCellInteractor(for index:Int) -> BaseCellInteractor? {
-        return cellInteractors[cellOrder[index]]
-    }
-    
-    func getNumberCellInteractor() -> Int {
-        return cellOrder.count
-    }
-    
-}
-
-
-
-class ListInteractor: BaseTableInteractor {
-    
-    enum Cells : CellEnum {
-        var description: String {
-            return ""
-        }
-        
-        case firstName
-        case lastName
-        case isAboveEighteen
-        case sampleImage
-    }
-    
+    typealias Cell = ListInteractorCell
     
     init() {
         super.init(
             cellOrder: [
-                Cells.firstName.rawValue,
-                Cells.lastName.rawValue,
-                Cells.isAboveEighteen.rawValue,
-                Cells.sampleImage.rawValue],
+                Cell.firstName,
+                Cell.lastName,
+                Cell.isAboveEighteen,
+                Cell.sampleImage],
             
             cellInteractors:  [
-                Cells.firstName.rawValue : InputTextCellInteractor(title: "First Name", value: ""),
-                Cells.lastName.rawValue : InputTextCellInteractor(title: "Last Name", value: ""),
-                Cells.isAboveEighteen.rawValue : InputTextCellInteractor(title: "Last Name", value: ""),
-                Cells.sampleImage.rawValue : InputBoolCellInteractor(title: "Is Above 18?", value: false)
+                Cell.firstName : InputTextCellInteractor(title: "First Name", value: ""),
+                Cell.lastName : InputTextCellInteractor(title: "Last Name", value: ""),
+                Cell.isAboveEighteen : InputTextCellInteractor(title: "Last Name", value: ""),
+                Cell.sampleImage : InputBoolCellInteractor(title: "Is Above 18?", value: false)
             ])
-        
-        
     }
-    
-    
-    
-
-    
 }
 
 

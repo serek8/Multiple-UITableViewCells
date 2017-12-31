@@ -21,6 +21,7 @@
 		3B54790F1FF81E69005DF1DF /* InputBoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54790D1FF81E69005DF1DF /* InputBoolCell.swift */; };
 		3B5479101FF81E69005DF1DF /* InputBoolCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B54790E1FF81E69005DF1DF /* InputBoolCell.xib */; };
 		3B5479121FF81EE5005DF1DF /* InputBoolCellInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5479111FF81EE5005DF1DF /* InputBoolCellInteractor.swift */; };
+		3B8A0E721FF902C900579C2A /* BaseTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8A0E711FF902C900579C2A /* BaseTableInteractor.swift */; };
 		3BFBB2251FF823B200E8ABA9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBB2231FF823B200E8ABA9 /* ImageCell.swift */; };
 		3BFBB2261FF823B200E8ABA9 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFBB2241FF823B200E8ABA9 /* ImageCell.xib */; };
 		3BFBB2281FF823E200E8ABA9 /* ImageCellInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFBB2271FF823E200E8ABA9 /* ImageCellInteractor.swift */; };
@@ -43,6 +44,7 @@
 		3B54790D1FF81E69005DF1DF /* InputBoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoolCell.swift; sourceTree = "<group>"; };
 		3B54790E1FF81E69005DF1DF /* InputBoolCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputBoolCell.xib; sourceTree = "<group>"; };
 		3B5479111FF81EE5005DF1DF /* InputBoolCellInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBoolCellInteractor.swift; sourceTree = "<group>"; };
+		3B8A0E711FF902C900579C2A /* BaseTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableInteractor.swift; sourceTree = "<group>"; };
 		3BFBB2231FF823B200E8ABA9 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		3BFBB2241FF823B200E8ABA9 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		3BFBB2271FF823E200E8ABA9 /* ImageCellInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellInteractor.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		3B5478FC1FF7F511005DF1DF /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				3B8A0E711FF902C900579C2A /* BaseTableInteractor.swift */,
 				3B5478F71FF7F4BD005DF1DF /* ListInteractor.swift */,
 			);
 			path = Interactors;
@@ -241,6 +244,7 @@
 			files = (
 				3B54790A1FF7F9D3005DF1DF /* InputTextCellInteractor.swift in Sources */,
 				3B5478F81FF7F4BD005DF1DF /* ListInteractor.swift in Sources */,
+				3B8A0E721FF902C900579C2A /* BaseTableInteractor.swift in Sources */,
 				3B54790F1FF81E69005DF1DF /* InputBoolCell.swift in Sources */,
 				3B5479121FF81EE5005DF1DF /* InputBoolCellInteractor.swift in Sources */,
 				3B5478FA1FF7F4E5005DF1DF /* ListTableVC.swift in Sources */,
