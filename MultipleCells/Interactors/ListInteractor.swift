@@ -13,29 +13,37 @@ protocol BaseTableInteractorProtocol {
     func getNumberCellInteractor() -> Int
 }
 
+//protocol CellProto: RawRepresentable {
+//
+//}
+typealias CellEnum = Int
 
-class ListInteractor: NSObject, BaseTableInteractorProtocol {
-    
-    enum Cells : Int{
-        case firstName
-        case lastName
-        case isAboveEighteen
-        case sampleImage
-    }
+//public class Abc : Hashable, ExpressibleByIntegerLiteral{
+//    public var hashValue: Int
+//
+//    public typealias IntegerLiteralType = Int
+//    var value : Int
+//    public static func == (lhs: Abc, rhs: Abc) -> Bool {
+//        return (lhs.value == rhs.value && lhs.value == rhs.value)
+//    }
+//
+//    public required init(integerLiteral value: IntegerLiteralType) {
+//        self.value = value
+//    }
+//
+//
+//}
+
+class BaseTableInteractor: NSObject, BaseTableInteractorProtocol {
     
     // You can update this array to change the order of the cells in the TableView
-    private var cellOrder: [Cells] = [
-        .firstName,
-        .lastName,
-        .isAboveEighteen,
-        .sampleImage]
+    var cellOrder: [CellEnum]
+    var cellInteractors : [CellEnum:BaseCellInteractor]
     
-    private(set) lazy var cellInteractors : [Cells:BaseCellInteractor] = [
-        .firstName : createCellInteractor(for: .firstName),
-        .lastName : createCellInteractor(for: .lastName),
-        .isAboveEighteen : createCellInteractor(for: .isAboveEighteen),
-        .sampleImage : createCellInteractor(for: .sampleImage)
-    ]
+    init(cellOrder: [CellEnum], cellInteractors : [CellEnum:BaseCellInteractor]) {
+        self.cellOrder = cellOrder
+        self.cellInteractors = cellInteractors
+    }
     
     func getCellInteractor(for index:Int) -> BaseCellInteractor? {
         return cellInteractors[cellOrder[index]]
@@ -45,21 +53,45 @@ class ListInteractor: NSObject, BaseTableInteractorProtocol {
         return cellOrder.count
     }
     
-    func createCellInteractor(for cell: Cells) -> BaseCellInteractor {
-        switch cell {
-        case .firstName:
-            return InputTextCellInteractor(title: "First Name", value: "")
-            
-        case .lastName:
-            return InputTextCellInteractor(title: "Last Name", value: "")
-            
-        case .isAboveEighteen:
-            return InputBoolCellInteractor(title: "Is Above 18?", value: false)
+}
 
-        case .sampleImage:
-            return ImageCellInteractor(title: "Sample Image")
+
+
+class ListInteractor: BaseTableInteractor {
+    
+    enum Cells : CellEnum {
+        var description: String {
+            return ""
         }
+        
+        case firstName
+        case lastName
+        case isAboveEighteen
+        case sampleImage
     }
+    
+    
+    init() {
+        super.init(
+            cellOrder: [
+                Cells.firstName.rawValue,
+                Cells.lastName.rawValue,
+                Cells.isAboveEighteen.rawValue,
+                Cells.sampleImage.rawValue],
+            
+            cellInteractors:  [
+                Cells.firstName.rawValue : InputTextCellInteractor(title: "First Name", value: ""),
+                Cells.lastName.rawValue : InputTextCellInteractor(title: "Last Name", value: ""),
+                Cells.isAboveEighteen.rawValue : InputTextCellInteractor(title: "Last Name", value: ""),
+                Cells.sampleImage.rawValue : InputBoolCellInteractor(title: "Is Above 18?", value: false)
+            ])
+        
+        
+    }
+    
+    
+    
+
     
 }
 
