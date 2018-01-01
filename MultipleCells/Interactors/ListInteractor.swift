@@ -17,21 +17,20 @@ protocol BaseTableInteractorProtocol {
 class ListInteractor: BaseTableInteractorProtocol {
     
     // All cells that may appear
-    enum Cell : Int{
+    enum Cell : Int {
         case firstName
         case lastName
         case isAboveEighteen
         case sampleImage
     }
     
-    
     // The visible cells in the given order
     var cellOrder: [Cell] = [
         .firstName,
         .lastName,
         .isAboveEighteen,
-        .sampleImage]
-    
+        .sampleImage
+    ]
     
     // Corresponding 'Cell Interactors' for each Cell enum
     var cellInteractors : [Cell:BaseCellInteractor] = [
