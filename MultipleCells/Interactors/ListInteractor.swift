@@ -10,64 +10,43 @@ import UIKit
 
 protocol BaseTableInteractorProtocol {
     func getCellInteractor(for index:Int) -> BaseCellInteractor?
-    func getNumberCellInteractor() -> Int
+    func getNumberOfVisibleCells() -> Int
 }
 
 
-class ListInteractor: NSObject, BaseTableInteractorProtocol {
+class ListInteractor: BaseTableInteractorProtocol {
     
-    enum Cells : Int{
+    // All cells that may appear
+    enum Cell : Int{
         case firstName
         case lastName
         case isAboveEighteen
         case sampleImage
     }
     
-    // You can update this array to change the order of the cells in the TableView
-    private var cellOrder: [Cells] = [
+    
+    // The visible cells in the given order
+    var cellOrder: [Cell] = [
         .firstName,
         .lastName,
         .isAboveEighteen,
         .sampleImage]
     
-    private(set) lazy var cellInteractors : [Cells:BaseCellInteractor] = [
-        .firstName : createCellInteractor(for: .firstName),
-        .lastName : createCellInteractor(for: .lastName),
-        .isAboveEighteen : createCellInteractor(for: .isAboveEighteen),
-        .sampleImage : createCellInteractor(for: .sampleImage)
+    
+    // Corresponding 'Cell Interactors' for each Cell enum
+    var cellInteractors : [Cell:BaseCellInteractor] = [
+        .firstName : InputTextCellInteractor(title: "First Name", value: ""),
+        .lastName : InputTextCellInteractor(title: "Last Name", value: ""),
+        .isAboveEighteen : InputBoolCellInteractor(title: "Is Above 18?", value: false),
+        .sampleImage : ImageCellInteractor(title: "Sample Image")
     ]
     
     func getCellInteractor(for index:Int) -> BaseCellInteractor? {
         return cellInteractors[cellOrder[index]]
     }
     
-    func getNumberCellInteractor() -> Int {
+    func getNumberOfVisibleCells() -> Int {
         return cellOrder.count
     }
-    
-    func createCellInteractor(for cell: Cells) -> BaseCellInteractor {
-        switch cell {
-        case .firstName:
-            return InputTextCellInteractor(title: "First Name", value: "")
-            
-        case .lastName:
-            return InputTextCellInteractor(title: "Last Name", value: "")
-            
-        case .isAboveEighteen:
-            return InputBoolCellInteractor(title: "Is Above 18?", value: false)
-
-        case .sampleImage:
-            return ImageCellInteractor(title: "Sample Image")
-        }
-    }
-    
 }
-
-
-
-
-
-
-
-
 

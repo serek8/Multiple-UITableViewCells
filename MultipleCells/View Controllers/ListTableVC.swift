@@ -18,7 +18,7 @@ class ListTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor.getNumberCellInteractor()
+        return interactor.getNumberOfVisibleCells()
     }
 
     
